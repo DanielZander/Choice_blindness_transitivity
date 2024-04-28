@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jspsych/jspsych.js"></script>
+    <link href="jspsych/css/jspsych.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="styling.css">
+    <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
+    <script src="jspsych/plugins/jspsych-image-button-response.js"></script>
+    <script src="jspsych/plugins/jspsych-instructions.js"></script>
+    <script src="jspsych/plugins/jspsych-html-button-response.js"></script>
+    <script src="jspsych/plugins/jspsych-image-slider-response.js"></script>
+    <script src="jspsych/plugins/jspsych-resize.js"></script>
+    <script src="jspsych\plugins\jspsych-call-function.js"></script>
+    <script src="jspsych\plugins\jspsych-image-slider-response.js"></script>
+    <script src= "jspsych\plugins\jspsych-html-slider-response-custom.js"></script>
+    <script src="jspsych\plugins\jspsych-survey-likert.js"></script>
+    <script src="jspsych\plugins\jspsych-survey-text.js"></script>
+    <script src="jspsych\plugins\jspsych-survey-multi-choice.js"></script>
+    <script src="jspsych\plugins\jspsych-survey-multi-choice-custom.js"></script>
+</head>
+<body>
+</body>
+
+<script>
+
+var timeline = [];
+
+var pics = ["img/1 AF-205.jpg", "img/1 AF-224.jpg"];
+
+console.log(pics[0]);
+var delibiration = {
+    type: "html-keyboard-response",
+    stimulus: function(){
+   
+        return "<div class='left_stim'><img class = 'central_stim' src='"+pics[0]+"' </img> </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+pics[1]+"' </img> </div>" 
+    },
+    choices: jsPsych.NO_KEYS,
+        trial_duration: 4000,
+};
+timeline.push(delibiration);
+
+
+button_choice=['<button id = "left_button">Left</button>','<button id = "right_button">Right</button>'];
+
+var choice = {
+    type: 'html-button-response',
+    button_html: button_choice,
+    choices: ["Left Face","Right Face"],
+    stimulus: "<p id = 'choice_text'> Select the face you find most attractive </p>"+
+            "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>" 
+}
+
+timeline.push(choice);
+
+jsPsych.init({
+    show_progress_bar: true,
+    timeline: timeline,
+})
+
+
+
+</script>
+</html>

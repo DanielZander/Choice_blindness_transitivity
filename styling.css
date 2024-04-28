@@ -1,0 +1,125 @@
+
+/*for counter stuff */
+html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+#jspsych-target { width: 100%; height: 100%;}
+
+.required{
+    display: none;
+}
+
+.main_div{
+    width: auto;
+    height: 100%;
+    margin:0 auto;
+}
+
+.mybutton{
+    background: blue; 
+    border: none; 
+    color: white; 
+    padding: 10px 28px; 
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block; 
+    font-size: 16px; 
+    margin: 4px 2px; 
+    cursor: pointer;
+    border-radius: 20px; 
+    border: 4px solid transparent;
+    position: relative;
+    left: 75%;
+}
+
+#jspsych-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%; /* Adjust this as needed */
+    height: 50%; /* Adjust this as needed */
+}
+
+.countdown-container {
+    position: absolute;
+    top: 60%;
+    left: 55%;
+    display: flex; /* Use flexbox */
+    align-items: center; /* Align items vertically */  
+}
+
+#count_down_text,
+#count_down_number {
+
+    font-size: 25px;
+    display: inline-block;
+}
+
+#count_down_number {
+    margin-left: 5px; /* Adjust this value to your preference */
+}
+
+.hidden {
+    display: none;
+}
+
+.jspsych-survey-multi-choice-option {
+    display: flex; /* Use Flexbox */
+    flex-direction: row; /* Arrange children in a row */
+}
+
+.jspsych-survey-multi-choice-text {
+    order: 1; /* Make the label appear after the input */
+    padding-left: 10px;
+}
+
+
+
+
+
+.left_stim{
+    position: absolute;
+    top: 15%;
+    left: 25%;
+}
+
+.right_stim{
+    position: absolute;
+    right: 25%;
+    top: 15%;}
+
+.central_stim{
+    height: 20vh;
+    width:10vw}
+
+
+.button_choice, #left_button, #right_button {
+    background-color: #e7e7e7;
+    color: black;
+    border-radius: 15px;
+    padding: 10px 25px;
+    text-align: center;
+    box-shadow: 0 9px #999;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    }
+
+
+#left_button{
+    position: absolute;
+    bottom: 32%;
+    left: 30%;
+}
+
+#right_button{
+    position: absolute;
+    bottom: 32%;
+    right: 30%;
+}
+
+#choice_text{
+    position: absolute;
+    text-align: center;
+    width: 100%; /* Make the width of the text container 100% */ /* Position the text container vertically at the middle of its parent container */
+   
+}
