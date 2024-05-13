@@ -7,19 +7,20 @@
     <script src="jspsych/jspsych.js"></script>
     <link href="jspsych/css/jspsych.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="styling.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych/plugins/jspsych-image-button-response.js"></script>
     <script src="jspsych/plugins/jspsych-instructions.js"></script>
-    <script src="jspsych/plugins/jspsych-html-button-response.js"></script>
     <script src="jspsych/plugins/jspsych-image-slider-response.js"></script>
+    <script src="jspsych/plugins/jspsych-html-button-response.js"></script>
     <script src="jspsych/plugins/jspsych-resize.js"></script>
     <script src="jspsych\plugins\jspsych-call-function.js"></script>
     <script src="jspsych\plugins\jspsych-image-slider-response.js"></script>
     <script src= "jspsych\plugins\jspsych-html-slider-response-custom.js"></script>
     <script src="jspsych\plugins\jspsych-survey-likert.js"></script>
     <script src="jspsych\plugins\jspsych-survey-text.js"></script>
-    <script src="jspsych\plugins\jspsych-survey-multi-choice.js"></script>
-    <script src="jspsych\plugins\jspsych-survey-multi-choice-custom.js"></script>
+    <script src="jspsych\plugins\jspsych-survey-text-custom.js"></script>
+    <script src="jspsych\plugins\jspsych-html-vas-custom.js"></script>
 </head>
 <body>
 </body>
@@ -29,6 +30,7 @@
 var timeline = [];
 
 var pics = ["img/1 AF-205.jpg", "img/1 AF-224.jpg"];
+var radio_rating = 0;
 
 console.log(pics[0]);
 var delibiration = {
@@ -50,12 +52,61 @@ var choice = {
     type: 'html-button-response',
     button_html: button_choice,
     choices: ["Left Face","Right Face"],
-    stimulus: "<p id = 'choice_text'> Select the face you find most attractive </p>"+
-            "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
+    stimulus: "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
             "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>" 
 }
 
 timeline.push(choice);
+
+
+myRadio = document.querySelector("input[name='sl2']");
+    function radioClick(v) {
+      let rb = 'sl2_' + v;  // match the id of each option, here "sl2_1", "sl2_2", etc.
+      document.getElementById(rb).checked = true;
+      radio_rating=v;
+      document.querySelector('#jspsych-html-slider-response-next').disabled = false;//enable button to continue
+    }
+
+
+
+button_conf=[
+    '<button class="button_confidence">Continue</button>'];
+
+var scale = {
+    type: 'html-vas-custom',
+    stimulus: function(){
+        stim = 
+
+        "<div class='left_stim'><img class = 'central_stim' src='"+pics[0]+"' </img> </div>" +
+        "<div class='right_stim'><img class = 'central_stim' src='"+pics[1]+"' </img> </div>"+
+
+
+                "<table>" +
+                    "<tr>" +
+                        "<td class='rightTdVas'>0<br>Very<br>unattractive</td>" +
+                        "<td>" +
+                            "<div class = 'slider_tick_container'>"+
+                                "<img src='responseScales/vas_banded.png' id='customSlider2'>" +
+                                "<div id='customTick2' class='customTick2'>" +
+                                "<img id='customTick2_fig' src='responseScales/tick2.png'>" +
+                        "</td>" +
+                        "<td class='rightTdVas'>100<br>Very<br>attractive</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td colspan='3'>" +
+                            "<div id='mySlider5_value'></div>" +
+                        "</td>" +
+                    "</tr>" +
+                    "</div>"+
+                "</table>"
+        return stim
+
+    },
+    require_movement:true,
+    button_label:"Continue",
+}
+
+timeline.push(scale);
 
 jsPsych.init({
     show_progress_bar: true,
