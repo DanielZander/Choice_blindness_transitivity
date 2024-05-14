@@ -33,7 +33,9 @@ var timeline = [];
 
 var pics = ["img/1 AF-205.jpg", "img/1 AF-224.jpg"];
 var radio_rating = 0;
-
+var sum_dur = 0;
+var confidence_dur = 0;
+var choice_dur = 0;
 
 var inputs = {
     type: 'resize',
@@ -75,7 +77,10 @@ var choice = {
             "<div class = 'main_div'>" +
             "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
             "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>" +
-            "</div>"
+            "</div>",
+    on_finish: function(data){
+        choice_dur=data.rt;
+    }
 }
 
 timeline.push(choice);
@@ -100,20 +105,20 @@ var scale = {
         stim = 
 
         "<div class = 'main_div'>" +        
-        "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+        "<div class='left_stim'><img class = 'central_stim_selected' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
         "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
 
 
                 "<table>" +
                     "<tr>" +
-                        "<td class='leftTdVas'>0<br>Very<br>unattractive</td>" +
+                        "<td class='leftTdVas'>0<br>Not very<br>strong</td>" +
                         "<td>" +
                             "<div class = 'slider_tick_container'>"+
                                 "<img src='responseScales/vas_banded.png' id='customSlider2'>" +
                                 "<div id='customTick2' class='customTick2'>" +
-                                '<img id="customTick2_fig" src="responseScales/tick2.png" width="25px" height="25px">'+
+                                '<img id="customTick2_fig" src="responseScales/tick2.png" width="30px" height="30px">'+
                         "</td>" +
-                        "<td class='rightTdVas'>100<br>Very<br>attractive</td>" +
+                        "<td class='rightTdVas'>100<br>Very<br>strong</td>" +
                     "</tr>" +
                     "<tr>" +
                         "<td colspan='3'>" +
@@ -127,8 +132,38 @@ var scale = {
     },
     require_movement:true,
     button_label:"Continue",
-    button_html: button_conf
+    button_html: button_conf,
+    on_finish: function(data){
+        confidence_dur=data.rt;
+        sum_dur= choice_dur+confidence_dur;
+        }
 }
+
+var delay_cardback2 = {
+        type: "html-keyboard-response",
+        stimulus:function(){
+        var stim = 
+            "<div class = 'main_div'>" +     
+            "<p>  Please wait </p>" + 
+            "<div class='left_stim'><img class = 'central_stim_selected' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"
+        return stim
+        },
+
+        choices: jsPsych.NO_KEYS,
+        data: {screen_id: "delay_cardback2"},
+        trial_duration:function(){
+        var dur= null;
+            (function(){
+                dur=7000-sum_dur;
+                if (dur<0) {dur=0};})()
+        console.log(dur,"dur computed on cardback2")
+        return dur}
+        }; 
+
+timeline.push(delay_cardback2);
+
+
 
 timeline.push(scale);
 
