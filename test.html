@@ -6,7 +6,7 @@
     <title>Document</title>
     <script src="jspsych/jspsych.js"></script>
     <link href="jspsych/css/jspsych.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="styling.css">
+    <link rel="stylesheet" type="text/css" href="styling2.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
     <script src="jspsych/plugins/jspsych-image-button-response.js"></script>
@@ -27,18 +27,37 @@
 
 <script>
 
+
+
 var timeline = [];
 
 var pics = ["img/1 AF-205.jpg", "img/1 AF-224.jpg"];
 var radio_rating = 0;
 
+
+var inputs = {
+    type: 'resize',
+    item_width: 3 + 3/8,
+    item_height: 2 + 1/8,
+    prompt: "<h1> Calibration </h1><p>Click and drag the lower right corner of the box until the box is the same size as a credit card held up to the screen. <br> When the rectangle has the same size as the card, press continue</p>",
+    pixels_per_unit: 150,
+};
+timeline.push(inputs);
+
+
 console.log(pics[0]);
 var delibiration = {
     type: "html-keyboard-response",
     stimulus: function(){
-   
-        return "<div class='left_stim'><img class = 'central_stim' src='"+pics[0]+"' </img> </div>" +
-            "<div class='right_stim'><img class = 'central_stim' src='"+pics[1]+"' </img> </div>" 
+
+        stim =  "<div class = 'main_div'>" +
+             "<div class='left_stim'><img class = 'central_stim' src='"+pics[0]+"' </img> </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+pics[1]+"' </img> </div>" +
+            "</div>"
+        
+    
+    return stim
+    
     },
     choices: jsPsych.NO_KEYS,
         trial_duration: 4000,
@@ -52,8 +71,11 @@ var choice = {
     type: 'html-button-response',
     button_html: button_choice,
     choices: ["Left Face","Right Face"],
-    stimulus: "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
-            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>" 
+    stimulus: 
+            "<div class = 'main_div'>" +
+            "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>" +
+            "</div>"
 }
 
 timeline.push(choice);
@@ -77,6 +99,7 @@ var scale = {
     stimulus: function(){
         stim = 
 
+        "<div class = 'main_div'>" +        
         "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
         "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
 
@@ -98,9 +121,9 @@ var scale = {
                         "</td>" +
                     "</tr>" +
                     "</div>"+
-                "</table>"
+                "</table>"+
+        "</div>"
         return stim
-
     },
     require_movement:true,
     button_label:"Continue",

@@ -1,7 +1,16 @@
 
 /*for counter stuff */
-html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
-#jspsych-target { width: 100%; height: 100%;}
+/*html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
+#jspsych-target { width: 100%; height: 100%;}*/
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
 
 .required{
     display: none;
@@ -30,37 +39,40 @@ html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
     left: 75%;
 }
 
-#jspsych-content{
+/*
+.jspsych-content{
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 20%;
+    left: 25%;
     transform: translate(-50%, -50%);
-    width: 50%; /* Adjust this as needed */
-    height: 50%; /* Adjust this as needed */
+    width: 50%; 
+    height: 50%; 
+}
+*/
+
+.jspsych-content {
+    position:absolute;
+    top: 20%;
+    width: 100%;
+    height: 100%;
 }
 
-.countdown-container {
-    position: absolute;
-    top: 60%;
-    left: 55%;
-    display: flex; /* Use flexbox */
-    align-items: center; /* Align items vertically */  
+
+#jspsych-html-keyboard-response-stimulus{
+    height: inherit;
+    width: inherit;
 }
 
-#count_down_text,
-#count_down_number {
-
-    font-size: 25px;
-    display: inline-block;
+.main_div {
+    position: inherit;
+    width: inherit;
+    height:inherit;
+    transform: inherit;
+    left: inherit;
+    top: inherit
 }
 
-#count_down_number {
-    margin-left: 5px; /* Adjust this value to your preference */
-}
 
-.hidden {
-    display: none;
-}
 
 .jspsych-survey-multi-choice-option {
     display: flex; /* Use Flexbox */
