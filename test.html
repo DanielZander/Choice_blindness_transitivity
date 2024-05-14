@@ -139,6 +139,9 @@ var scale = {
         }
 }
 
+
+timeline.push(scale);
+
 var delay_cardback2 = {
         type: "html-keyboard-response",
         stimulus:function(){
@@ -146,7 +149,8 @@ var delay_cardback2 = {
             "<div class = 'main_div'>" +     
             "<p>  Please wait </p>" + 
             "<div class='left_stim'><img class = 'central_stim_selected' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
-            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+            "</div>"
         return stim
         },
 
@@ -163,9 +167,55 @@ var delay_cardback2 = {
 
 timeline.push(delay_cardback2);
 
+var survey = {
+  type: 'survey-text-custom',
+  preamble: function() {
+    var stim = 
+        "<div class = 'main_div'>" +     
+            "<div class='left_stim'><img class = 'central_stim_selected' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+        "</div>"
+
+        return stim
+        },
+    
+  questions: [
+    {
+      prompt: 
+              "<p class = 'explanation_text' ><strong>Explain briefly why you chose this face.</strong></p>" +
+              "<p class = 'explanation_text2'><strong>Text box will stop responding when the limit of 240 characters has been reached!</strong></p>",
+      rows: 5
+    }
+  ]
+};
+timeline.push(survey);
 
 
-timeline.push(scale);
+
+button_array=[
+    '<button class="button1">Mouth</button>','<button class="button2">Eyes</button>',
+    '<button class="button3">Nose</button>','<button class="button4">Proportion</button>',
+    '<button class="button5">Skin</button>','<button class="button6">Shape</button>',
+    '<button class="button7">I actually prefer the other face</button>'];
+
+    var feedback_array = {
+    type: "html-button-response",
+    button_html: button_array,
+    choices: ["Mouth", "Eyes","Nose", "Proportion", "Skin","Shape","I actually prefer the other face"],
+    stimulus:function(){
+        var stim = 
+        "<div class = 'main_div'>" +    
+            "<p><strong>Select one feature which best explains your choice.</strong></p>" + 
+            "<div class='left_stim'><img class = 'central_stim_selected' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+        "</div>"
+    return stim
+    },
+    data: {screen_id: "feedback"},
+    trial_gap: 200
+}
+timeline.push(feedback_array);
+
 
 jsPsych.init({
     show_progress_bar: true,

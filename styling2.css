@@ -73,7 +73,16 @@ body {
     width: inherit;
 }
 
+#jspsych-survey-text-preamble{
+    height: inherit;
+    width: inherit;
+}
 
+#jspsych-survey-text-form{
+   position: absolute;
+   top: 25%;
+   left: 30%;
+}
 
 #jspsych-html-slider-response-next{
     position: absolute;
@@ -236,3 +245,191 @@ right:25%;
     bottom: 10%;
     left: 46.4%;
 }
+
+
+/* BUTTON STUFF */
+
+#jspsych-html-button-response-btngroup{
+    position: absolute;
+    top:30%;
+    left: 20%;
+}
+
+.button {
+    background-color: #4CAF50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: grid;
+    font-size: 16px;
+    margin: 4px 2px;
+    
+    cursor: pointer;
+    /* float: left; */
+    /* position: absolute;
+    top: 0px;
+    right: 1500px;
+    width: 100px;
+    height: 50px; */
+    position: relative;
+    left: 30px;
+    }
+.button1 {
+background-color: #e7e7e7;
+color: black;
+border-radius: 15px;
+padding: 15px 32px;
+text-align: center;
+box-shadow: 0 9px #999;
+border: none;
+font-size: 16px;
+/* margin: 4px 10px;*/
+margin: 0px 10px;
+
+/* margin: 70px 70px; */
+cursor: pointer;
+
+/* position: relative;
+right: -250px;
+top: 0px; */
+
+}
+.button1:hover {background-color: #A9A9A9}
+.button1:active {
+background-color: #A9A9A9;
+box-shadow: 0 5px #666;
+transform: translateY(4px);}
+
+.button2 {
+background-color: #e7e7e7;
+color: black;
+border-radius: 15px;
+padding: 15px 32px;
+text-align: center;
+box-shadow: 0 9px #999;
+border: none;
+font-size: 16px;
+/* margin: 4px 10px; */
+margin: 0px 10px;
+cursor: pointer;
+/* position: relative;
+right: -250px;
+top: 0px; */
+}
+.button2:hover {background-color: #A9A9A9}
+.button2:active {
+background-color: #A9A9A9;
+box-shadow: 0 5px #666;
+transform: translateY(4px);}
+
+.button3 {
+background-color: #e7e7e7;
+color: black;
+border-radius: 15px;
+padding: 15px 32px;
+text-align: center;
+box-shadow: 0 9px #999;
+border: none;
+font-size: 16px;
+/* margin: 4px 10px; */
+margin: 0px 10px;
+cursor: pointer;
+/* position: relative;
+right: -250px;
+top: 0px; */
+}
+.button3:hover {background-color: #A9A9A9}
+.button3:active {
+background-color: #A9A9A9;
+box-shadow: 0 5px #666;
+transform: translateY(4px);}
+
+.button4 {
+background-color: #e7e7e7;
+color: black;
+border-radius: 15px;
+padding: 15px 32px;
+text-align: center;
+box-shadow: 0 9px #999;
+border: none;
+font-size: 16px;
+/* margin: 4px 10px; */
+margin: 0px 10px;
+cursor: pointer;
+/* position: relative;
+right: 300px;
+top: 70px; */
+}
+.button4:hover {background-color: #A9A9A9}
+.button4:active {
+background-color: #A9A9A9;
+box-shadow: 0 5px #666;
+transform: translateY(4px);}
+
+.button5 {
+background-color: #e7e7e7;
+color: black;
+border-radius: 15px;
+padding: 15px 32px;
+text-align: center;
+box-shadow: 0 9px #999;
+border: none;
+font-size: 16px;
+/* margin: 4px 10px; */
+margin: 0px 10px;
+cursor: pointer;
+/* position: relative;
+right: 300px;
+top: 70px; */
+}
+.button5:hover {background-color: #A9A9A9}
+.button5:active {
+background-color: #A9A9A9;
+box-shadow: 0 5px #666;
+transform: translateY(4px);}
+
+.button6 {
+background-color: #e7e7e7;
+color: black;
+border-radius: 15px;
+padding: 15px 32px;
+text-align: center;
+box-shadow: 0 9px #999;
+border: none;
+font-size: 16px;
+/* margin: 4px 10px; */
+margin: 0px 10px;
+cursor: pointer;
+/* position: relative;
+right: 300px;
+top: 70px; */
+}
+.button6:hover {background-color: #A9A9A9}
+.button6:active {
+background-color: #A9A9A9;
+box-shadow: 0 5px #666;
+transform: translateY(4px);}
+
+.button7 {
+    background-color: #e7e7e7;
+color: black;
+border-radius: 15px;
+padding: 15px 32px;
+text-align: center;
+box-shadow: 0 9px #999;
+border: none;
+font-size: 16px;
+/* margin: 4px 10px; */
+margin: 0px 10px;
+cursor: pointer;
+/* position: relative;
+right: 300px;
+top: 70px; */
+}
+.button7:hover {background-color: #A9A9A9}
+.button7:active {
+background-color: #A9A9A9;
+box-shadow: 0 5px #666;
+transform: translateY(4px);}
