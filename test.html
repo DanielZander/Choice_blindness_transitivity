@@ -77,18 +77,18 @@ var scale = {
     stimulus: function(){
         stim = 
 
-        "<div class='left_stim'><img class = 'central_stim' src='"+pics[0]+"' </img> </div>" +
-        "<div class='right_stim'><img class = 'central_stim' src='"+pics[1]+"' </img> </div>"+
+        "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+        "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
 
 
                 "<table>" +
                     "<tr>" +
-                        "<td class='rightTdVas'>0<br>Very<br>unattractive</td>" +
+                        "<td class='leftTdVas'>0<br>Very<br>unattractive</td>" +
                         "<td>" +
                             "<div class = 'slider_tick_container'>"+
                                 "<img src='responseScales/vas_banded.png' id='customSlider2'>" +
                                 "<div id='customTick2' class='customTick2'>" +
-                                "<img id='customTick2_fig' src='responseScales/tick2.png'>" +
+                                '<img id="customTick2_fig" src="responseScales/tick2.png" width="25px" height="25px">'+
                         "</td>" +
                         "<td class='rightTdVas'>100<br>Very<br>attractive</td>" +
                     "</tr>" +
@@ -104,6 +104,7 @@ var scale = {
     },
     require_movement:true,
     button_label:"Continue",
+    button_html: button_conf
 }
 
 timeline.push(scale);

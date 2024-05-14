@@ -118,10 +118,8 @@ html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
 }
 
 
-#customTick2{
-    display: none;
-    position: absolute;
-   }
+/* Slider stuff */
+
 
    #customTick2 {
     display: none;
@@ -132,7 +130,47 @@ html, body { width: 100%; height: 100%; margin: 0; padding: 0; }
 }
 
 
-.slider_tick_container{
+
+.slider_tick_container {
     position: absolute;
-    bottom: 0;
+    bottom: 40%;
+    left: 20%;
+}
+
+
+
+#customSlider2 {
+    width: 500px; /* adjust as needed */
+    height: auto; /* Keeps the aspect ratio */
+    position: absolute;
+  }  
+
+  .rightTdVas{
+    /* white-space: nowrap; */
+    font-size: 75%;
+    line-height: 1em;
+    position: absolute;
+    bottom:15%;
+    right:5%;
+    }
+
+    .leftTdVas{
+        /* white-space: nowrap; */
+        font-size: 75%;
+        line-height: 1em;
+        position: absolute;
+        bottom:15%;
+        left:5%;
+        }
+
+#mySlider5_value{
+    position: absolute;
+    bottom: 25%;
+    left: 47.5%;
+    }
+
+#jspsych-html-slider-response-next{
+    position: absolute;
+    bottom: 10%;
+    left: 44%;
 }
