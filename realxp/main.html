@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
         <script src="jspsych/jspsych.js"></script>
+        <link href="jspsych/css/jspsych.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styling.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="jspsych/plugins/jspsych-html-keyboard-response.js"></script>
         <script src="jspsych/plugins/jspsych-image-button-response.js"></script>
@@ -16,8 +21,6 @@
         <script src="jspsych\plugins\jspsych-survey-text.js"></script>
         <script src="jspsych\plugins\jspsych-survey-text-custom.js"></script>
         <script src="jspsych\plugins\jspsych-html-vas-custom.js"></script>
-        <link href="jspsych/css/jspsych.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="mystyle.css">
     </head>
 <body></body>
 <script>
@@ -292,7 +295,7 @@ var trial_count = 0;
 var trial_count2 = 0;
 var radio_rating = 0;
 var choice_dur= null;
-var confidence_dur=null;
+var confidence_dur=null;222222222222222
 var sum_dur=null;
 var manip_index;
 var consenting_end;
@@ -308,9 +311,6 @@ var filename=subject+'_'+d.getFullYear() + '_' + (d.getMonth()+1) + '_' + d.getD
 
 //------------------------------------------------------------------------------------------------------------------------------------------------//
 //INITIALIZE EXP.
-/*
-var all_m_nm = ['img/1 AF-224.jpg', "img/1 AF-226.jpg", "img/1 AF-205.jpg"];
-*/
 
 var welcome = {
       type: "html-keyboard-response",
@@ -336,18 +336,18 @@ var write_data_attempted = {
           type: 'call-function',
           func: function(){saveData_attempted(filename, jsPsych.data.get().csv())}
       }
-      timeline.push(write_data_attempted);
+      //timeline.push(write_data_attempted);
 
 //////////////////////////////////////////PHASE 1 STARTS///////////////////////////////////////////////
 
 
 var instruction_attractiveness = {
         type: "html-keyboard-response",
-        stimulus: "<div style='width: 70%;margin:0 auto;'>"+
+        stimulus: "<div class='main_div'>"+
         "<h1>First part: Attractiveness Rating</h1>"+
-        "<p>In this first part of the experiment you will be asked to rate how attractive you find different faces. Each face will appear only for a limited time (3 seconds) and you will then be able to give your rating on scale from 0-100."+
-        "<p>Try to pay attention so that you do not miss the faces!</p>"+
-        "<p>Press any key when you are ready</p>"+
+        "<p style = 'font-size: 22px;'>In this first part of the experiment you will be asked to rate how attractive you find different faces. Each face will appear only for a limited time (3 seconds) and you will then be able to give your rating on scale from 0-100."+
+        "<p style = 'font-size: 22px;'>Try to pay attention so that you do not miss the faces!</p>"+
+        "<p style = 'font-size: 22px;'>Press any key when you are ready</p>"+
         "</div>",
         data: {screenid: 'instruction_attractiveness'},
       };
@@ -381,16 +381,16 @@ var triplet_ratings = [{t1: {},
 ];
 var rating_index = [];
 
+
 for (let j = 0; j < all_m_nm.length; j++){
 
     var delib_attr = {
     type: "html-keyboard-response",
     choices: jsPsych.NO_KEYS,
     trial_duration: 1,
-    stimulus: function(){return "<div class='conf_div'>"+
-  "<p  style=' margin-bottom:28px; margin-top:0px; ' ><strong>How attractive do you think this face is?</strong></p>"+
+    stimulus: function(){return "<div class='main_div'>"+
+    "<p style = 'font-size: 24px;'> How strong is the preference for the face you selected? </p>" +
   "<img class='central_stim' src='"+all_m_nm[attr_trial_count]+"' </img>" +
-  "<p  style=' margin-top: -60px;' ><strong><br><br><br><br><br><br><br></strong></p>"+
   "</div>"},
     on_finish: function(data){
         data.attr_trial = attr_trial_count;
@@ -401,46 +401,39 @@ for (let j = 0; j < all_m_nm.length; j++){
         }
     };
 
-
+button_attr=['<button class="button_attr">Submit rating</button>'];    
     var scale = {
         type: 'html-vas-custom',
         stimulus: function(){
             this_stim=
+        "<div class = 'main_div'>" +      
+            "<p style = 'font-size: 24px;'>How attractive do you think this face is? </p>" +
+                "<img class='central_stim_attr' src='img/cardback2o.jpg'></img>" +
 
-        "<div class='conf_div'>" +
-            "<p style='margin-bottom: 28px; margin-top: 0px;'><strong>How attractive do you think this face is?</strong></p>" +
-            "<img class='central_stim' src='img/cardback2o.jpg'></img>" +
-            "<div id='mySlider5' style='width: 100%; text-align: center;'>" +
-                "<table style='text-align: center; margin: auto; padding: 0;'>" +
+                "<table>" +
                     "<tr>" +
-                        "<td class='rightTdVas'>0<br>Very<br>unattractive</td>" +
+                        "<td class='leftTdVas'>0<br>Not very<br>Attractive</td>" +
                         "<td>" +
-                            "<div style='position: relative;'>" +
-                                "<img src='responseScales/vas_banded.png' id='customSlider2' width='600px' height='60px'>" +
+                            "<div class = 'slider_tick_container'>"+
+                                "<img src='responseScales/vas_banded.png' id='customSlider2'>" +
                                 "<div id='customTick2' class='customTick2'>" +
-                                    "<img id='customTick2_fig' src='responseScales/tick2.png' width='25px' height='25px'>" +
-                                "</div>" +
-                            "</div>" +
+                                '<img id="customTick2_fig" src="responseScales/tick2.png" width="30px" height="30px">'+
                         "</td>" +
-                        "<td class='rightTdVas'>100<br>Very<br>attractive</td>" +
+                        "<td class='rightTdVas'>100<br>Very<br>Attractive</td>" +
                     "</tr>" +
                     "<tr>" +
                         "<td colspan='3'>" +
                             "<div id='mySlider5_value'></div>" +
                         "</td>" +
                     "</tr>" +
-                "</table>" +
-            "</div>" +
-        "</div>"; 
-
-
+                    "</div>"+
+                "</table>"+
+        "</div>"
 
         return this_stim
         },
         require_movement:true,
-        button_label: 'Submit rating',
-       
-        
+        button_html: button_attr, 
         on_finish: function(data){
             data.attr_trial = attr_trial_count;
             data.screen_id = "attractiveness_scale",
@@ -499,6 +492,8 @@ function save_relative_rating(face) {
 }
 //adds X,Y or Z to the face-identifying string depending on its triplet relative rating. For example: if AF-242 is rated number one, it becomes AF-242_X.
 
+
+
 var trial_orders = [];
 var unique_pairs;
 
@@ -556,25 +551,26 @@ var create_trial_order = {
 timeline.push(create_trial_order);
 
 
+
         //////////////////////////////////////////PHASE 2 STARTS///////////////////////////////////////////////
-button_conf=['<button class="button_confidence">Continue</button>'];
+
+        button_instr=['<button class="button_instr">Continue</button>'];        
 var start_exp = {
+
         type: "html-button-response",
-        margin_vertical: "0px",
-        margin_horizontal: "190px",
-        button_html: button_conf,
         choices: ["Continue"],
-        stimulus: "<div style='width: 70%;margin:0 auto;'>"+
+        button_html: button_instr,
+        stimulus: "<div class = 'main_div'>"+
         "<h1>Instructions main task</h1>"+
-        "<p>In this part, you will be presented with pairs of cards with faces on. The cards will be presented to you face up, and you will be able to see both faces for a brief period of time."+
-      "<br>Once the cards turn face down, your task is to select the card which has the face you find the most attractive.<br><br>"+
-      "After making each choice, you will be asked to indicate how much more you preferred the face you selected over the other.<br>"+
-      "<p>You will then be asked to give an open ended explanation for you choice. You can mention any reasons that mattered for your decision. You are not restricted to specific facial features that will be mentioned later.</p>"+
-       "<p>You will need to input a minimum of 15 and a maxmium of 240 characters.</p>"+
-      "Finally, the face you selected will be shown to you again and you will be asked"+
-       " to select what feature of the face, from a number of fixed options, mattered most for your choice.</p>"+
-       "<p>As the faces will only be presented for a brief period of time, please attend to them carefully</p>"+
-       "<p>Click the continue button only when you are ready</p>",
+        "<p style = 'font-size: 22px;'>In this part, you will be presented with pairs of cards with faces on. The cards will be presented to you face up, and you will be able to see both faces for a brief period of time.</p>"+
+      "<p style = 'font-size: 22px;'> Once the cards turn face down, your task is to select the card which has the face you find the most attractive. </p>"+
+      " <p style = 'font-size: 22px;'>After making each choice, you will be asked to indicate how much more you preferred the face you selected over the other. </p>"+
+      "<p style = 'font-size: 22px;'>You will then be asked to give an open ended explanation for you choice. You can mention any reasons that mattered for your decision. You are not restricted to specific facial features that will be mentioned later.</p>"+
+       "<p style = 'font-size: 22px;'>You will need to input a minimum of 15 and a maxmium of 240 characters.</p>"+
+      " <p style = 'font-size: 22px;'>Finally, the face you selected will be shown to you again and you will be asked </p>"+
+       " <p style = 'font-size: 22px;'to select what feature of the face, from a number of fixed options, mattered most for your choice.</p>"+
+       "<p style = 'font-size: 22px;'>As the faces will only be presented for a brief period of time, please attend to them carefully</p>"+
+       "<p style = 'font-size: 22px;'> Click the continue button only when you are ready</p>" + "</div>",
 
         data: {screen_id: 'start_exp'}
         };
@@ -604,15 +600,11 @@ var delibiration = {
         stimulus: function(){
             
             console.log("SHUFFLED: ", shuffleArray(trial_orders[trial_count]));
-
-            return "<div class='main_div'>"+
-      "<p class='big'><strong>  <br>  </strong></p>" +
-      "<div class='left_stim'><img class='central_stim' src='"+trial_orders[trial_count][0]+"' </img>" +
-      "<p class='small'><strong>  <br>  </strong></p></div>" +
-      "<div class='right_stim'><img class='central_stim' src='"+trial_orders[trial_count][1]+"' </img>" +
-      "<p class='small'><strong>  <br>  </strong></p></div>" +
-      "</div>";
-
+          
+            return "<div class = 'main_div'>" +
+            "<div class='left_stim'><img class='central_stim' src='"+trial_orders[trial_count][0]+"' </img></div>" +
+            "<div class='right_stim'><img class='central_stim' src='"+trial_orders[trial_count][1]+"' </img></div>" +
+            "</div>"
             },
 
         choices: jsPsych.NO_KEYS,
@@ -627,21 +619,18 @@ var delibiration = {
     };
     
 
-    button_choice=['<button class="button_confidence">Left</button>','<button class="button_confidence">Right</button>'];
+
+    button_choice_first=['<button id = "left_button_first">Left</button>','<button id = "right_button_first">Right</button>'];
 
     choice = {
         type: 'html-button-response',
-        html_button: button_choice,
-        margin_vertical: "0px",
-        margin_horizontal: "190px",
         choices: ["Left Face","Right Face"],
-        stimulus: "<div class='main_div'>"+
-        "<p class='big' style=' margin-bottom:28px; margin-top:0px; '><strong>Select the face you find the most attractive clicking on the corresponding button</strong></p>" +
-        "<div class='left_stim'><img class='central_stim' src='img/cardback1o.jpg'></img>" +
-        "<p class='small'><strong></strong></p></div>" +
-        "<div class='right_stim'><img class='central_stim' src='img/cardback2o.jpg'></img>" +
-        "<p class='small'><strong></strong></p></div>" +
-        "</div>",
+        button_html: button_choice_first, 
+        stimulus: "<div class = 'main_div'>" +
+            "<p style = 'font-size: 24px;'> Which face do you find the most attractive? </p>" +
+            "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>" +
+            "</div>",
 
         on_finish: function(data){
             data.trial = trial_count;
@@ -704,73 +693,64 @@ var delibiration = {
         var stim;
             if (selected_face[0]=="leftarrow") {
             stim = 
-            "<div class='conf_div2'>"+
-      "<p  style=' margin-bottom:68px; margin-top:0px; ' ><strong>How strong is your preference for the face you selected?</strong></p>" +
+            "<div class = 'main_div'>" +      
+                "<p style = 'font-size: 24px;'> How strong is your preference for the face you selected? </p>" +
+        "<div class='left_stim'><img class = 'central_stim_selected' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+        "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
 
-      "<div class='left_stim'><img class='selected_img' style='margin-top: -30px;' src='img/cardback1o.jpg'></img>" +
-      // "<p class='small'><strong>  </strong></p></div>" +
-      "</div>" +
-      "<div class='right_stim'><img class='non_selected_img' style='margin-top: -30px;' src='img/cardback2o.jpg'></img>" +
-      // "<p class='small'><strong>  </strong></p></div>" +
-      "</div>" +
-      '<div id="mySlider5" style="width: 100%;text-align:center">'+
-        '<table style="text-align: center; margin: auto; padding: 0">'+
-          '<tr>'+
-            '<td class=rightTdVas> 0 <br> Not very <br> strong </td>'+
-            '<td>'+
-              '<div style="position: relative">'+
-                '<img src="responseScales/vas_banded.png" id="customSlider2" width="600px" height="60px">'+
-                '<div id="customTick2" class="customTick2">'+
-                  '<img id="customTick2_fig" src="responseScales/tick2.png" width="25px" height="25px">'+
-                '</div>'+
-              '</div>'+
-            '</td>'+
-            '<td class=rightTdVas> 100 <br> Very <br> strong </td>'+
-          '</tr>'+
-          '<tr>'+
-            '<td colspan="3">'+
-              '<div id = "mySlider5_value"></div>'+
-            '</td>'+
-          '</tr>'+
-        '</table>'+
-      '</div>'+
-      '</div>'
+
+                "<table>" +
+                    "<tr>" +
+                        "<td class='leftTdVas'>0<br>Not very<br>strong</td>" +
+                        "<td>" +
+                            "<div class = 'slider_tick_container'>"+
+                                "<img src='responseScales/vas_banded.png' id='customSlider2'>" +
+                                "<div id='customTick2' class='customTick2'>" +
+                                '<img id="customTick2_fig" src="responseScales/tick2.png" width="30px" height="30px">'+
+                        "</td>" +
+                        "<td class='rightTdVas'>100<br>Very<br>strong</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td colspan='3'>" +
+                            "<div id='mySlider5_value'></div>" +
+                        "</td>" +
+                    "</tr>" +
+                    "</div>"+
+                "</table>"+
+        "</div>"
+        return stim
 }
 
 
             else{stim =
-                "<div class='conf_div2'>"+
-    "<p  style=' margin-bottom:68px; margin-top:0px; ' ><strong>How strong is your preference for the face you selected?</strong></p>" +
-    // "<p  style=' margin-top:55px; ' ><strong>How confident are you in your choice?</strong></p>" +
-    "<div class='left_stim'><img class='non_selected_img' style='margin-top: -30px;' src='img/cardback1o.jpg'></img>" +
-    // "<p class='small'><strong>  </strong></p></div>" +
-    "</div>" +
-    "<div class='right_stim'><img class='selected_img' style='margin-top: -30px;' src='img/cardback2o.jpg'></img>" +
-    "</div>" +
-    '<div id="mySlider5" style="width: 100%;text-align:center">'+
-      '<table style="text-align: center; margin: auto; padding: 0">'+
-        '<tr>'+
-        '<td class=rightTdVas> 0 <br> Not very <br> strong</td>'+
-          '<td>'+
-            '<div style="position: relative">'+
-              '<img src="responseScales/vas_banded.png" id="customSlider2" width="600px" height="60px">'+
-              '<div id="customTick2" class="customTick2">'+
-                '<img id="customTick2_fig" src="responseScales/tick2.png" width="25px" height="25px">'+
-              '</div>'+
-            '</div>'+
-          '</td>'+
-          '<td class=rightTdVas> 100 <br> Very <br> strong</td>'+
-        '</tr>'+
-        '<tr>'+
-          '<td colspan="3">'+
-            '<div id = "mySlider5_value"></div>'+
-          '</td>'+
-        '</tr>'+
-      '</table>'+
-    '</div>'+
-    '</div>'
-}
+                "<div class = 'main_div'>" +    
+                    "<p style = 'font-size: 24px;'> How strong is your preference for the face you selected? </p>" + 
+        "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+        "<div class='right_stim'><img class = 'central_stim_selected' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+
+
+                "<table>" +
+                    "<tr>" +
+                        "<td class='leftTdVas'>0<br>Not very<br>strong</td>" +
+                        "<td>" +
+                            "<div class = 'slider_tick_container'>"+
+                                "<img src='responseScales/vas_banded.png' id='customSlider2'>" +
+                                "<div id='customTick2' class='customTick2'>" +
+                                '<img id="customTick2_fig" src="responseScales/tick2.png" width="30px" height="30px">'+
+                        "</td>" +
+                        "<td class='rightTdVas'>100<br>Very<br>strong</td>" +
+                    "</tr>" +
+                    "<tr>" +
+                        "<td colspan='3'>" +
+                            "<div id='mySlider5_value'></div>" +
+                        "</td>" +
+                    "</tr>" +
+                    "</div>"+
+                "</table>"+
+        "</div>"
             return stim
+            }
+        
             },
 
 
@@ -791,22 +771,18 @@ var delibiration = {
             var this_stim;
                 if (selected_face[0]=="leftarrow") {
                 this_stim=
-                "<div class='main_div'>"+
-    "<p class='big' style='margin-bottom:28px;'><strong>         Please wait         </strong></p>" +
-    "<div class='left_stim'><img class='selected_img' src='img/cardback1o.jpg'></img>" +
-    "<p class='small' style='margin-bottom:28px;'><strong>   <br>    </strong></p></div>" +
-    "<div class='right_stim'><img class='non_selected_img' src='img/cardback2o.jpg'></img>" +
-    "<p class='small' style='margin-bottom:28px;'><strong>   <br>     </strong></p></div>" +
-    "</div>"
+                "<div class = 'main_div'>" +     
+                    "<p style = 'font-size: 24px;'> Please wait...</p>" +
+            "<div class='left_stim'><img class = 'central_stim_selected' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+            "</div>"
                     }
                 else{this_stim=
-                    "<div class='main_div'>"+
-      "<p class='big' style='margin-bottom:28px;'><strong>         Please Wait         </strong></p>" +
-      "<div class='left_stim'><img class='non_selected_img' src='img/cardback1o.jpg'></img>" +
-      "<p class='small' style='margin-bottom:28px;'><strong>   <br>    </strong></p></div>" +
-      "<div class='right_stim'><img class='selected_img' src='img/cardback2o.jpg'></img>" +
-      "<p class='small' style='margin-bottom:28px;'><strong>   <br>     </strong></p></div>" +
-      "</div>"
+                    "<div class = 'main_div'>" +     
+                     "<p style = 'font-size: 24px;'> Please wait...</p>" +
+            "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+            "<div class='right_stim'><img class = 'central_stim_selected' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+            "</div>"
                     }return this_stim
                 },
 
@@ -831,66 +807,55 @@ var delibiration = {
         if (manip_index[trial_count]==1){
             console.log("classic");
             if (selected_face[0]=="leftarrow"){
-                var f_screen = 
-                "<div id = 'div'>"+
-                "<div class='main_div3'>" +
-                "<div class='left_stim'><img class='selected_img' src='"+trial_orders[trial_count][1]+"'></img></div>" +
-                "<div class='right_stim'><img class='non_selected_img' src='img/cardback2o.jpg'></img></div>" +
-                "</div>"+
-                "</div>";
+                var f_screen =
+                "<div class = 'main_div'>" +     
+                "<div class='left_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][1]+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+                "</div>",
             feedbacked_face=save_relative_rating(trial_orders[trial_count][1]);
             
             }else if (selected_face[0]=="rightarrow"){
                 var  f_screen=
-                "<div id = 'div'>"+
-                "<div class='main_div3' >" +
-                "<div class='right_stim'><img class='selected_img' src='"+trial_orders[trial_count][0]+"'></img></div>" +
-                "<div class='left_stim'><img class='non_selected_img' src='img/cardback2o.jpg'></img></div>" +
-                "</div>"+
-                "</div>";;
+                "<div class = 'main_div'>" +     
+                "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][0]+"' </img> </div>"+
+                "</div>"
+          
                 feedbacked_face=save_relative_rating(trial_orders[trial_count][0]);
             }else{
-                var  f_screen="<div class='main_div3'>"+
-                "<p class='small'><strong>Timed out</strong></p></div>" ;
+                var  f_screen= "<p class='small'><strong>Timed out</strong></p></div>" ;
             }
         }else{
             //Not a manipulation trial.
             if (selected_face[0]=="leftarrow") {
                 var  f_screen=
-                "<div id = 'div'>"+
-                "<div class='main_div3'>" +
-                "<div class='left_stim'><img class='selected_img' src='"+trial_orders[trial_count][0]+"'></img></div>" +
-                "<div class='right_stim'><img class='non_selected_img' src='img/cardback2o.jpg'></img></div>" +
-                "</div>"+
-                "</div>";
-
+                "<div class = 'main_div'>" +     
+                "<div class='left_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][0]+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+                "</div>"
                 feedbacked_face=save_relative_rating(trial_orders[trial_count][0]);
 
             }else if (selected_face[0]=="rightarrow"){
                 var  f_screen=
-                "<div id = 'div'>"+
-                "<div class='main_div3'>" +
-                "<div class='right_stim'><img class='selected_img' src='"+trial_orders[trial_count][1]+"'></img></div>" +
-                "<div class='left_stim'><img class='non_selected_img' src='img/cardback2o.jpg'></img></div>" +
-                "</div>"+
-                "</div>";
+                "<div class = 'main_div'>" +     
+                "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][1]+"' </img> </div>"+
+                "</div>"
                 feedbacked_face=save_relative_rating(trial_orders[trial_count][1]);
             }else{
-                var  f_screen="<div class='main_div'>"+
-                "<p class='small'><strong>Timed out</strong></p></div>";}
+                var  f_screen= "<p class='small'><strong>Timed out</strong></p></div>";}
         }
 
         return f_screen},
   questions: [
     {
-      prompt: "<div class='main_div'>" +
-              "<p class = 'explanation_text' ><strong>Explain briefly why you chose this face.</strong></p>" +
-              "<p class = 'explanation_text2'><strong>Text box will stop responding when the limit of 240 characters has been reached!</strong></p>" +
-              "</div>",
+      prompt: "<p style = 'font-size: 24px;'>Explain briefly why you chose this face.</p>" +
+              "<p style = 'font-size: 18px;'>Text box will stop responding when the limit of 240 characters has been reached!</p>" ,
       rows: 5
     }
   ]
 };
+
 
 
 
@@ -902,8 +867,6 @@ var delibiration = {
 
     var feedback_array = {
     type: "html-button-response",
-    margin_vertical: "0px",
-    margin_horizontal: "0px",
     button_html: button_array,
     choices: ["Mouth", "Eyes","Nose", "Proportion", "Skin","Shape","I actually prefer the other face"],
     stimulus:function(){
@@ -912,55 +875,45 @@ var delibiration = {
         console.log("classic");
         if (selected_face[0]=="leftarrow"){
             var f_screen = 
-                    "<div class='main_div' >"+
-            "<p class='big' style='margin-bottom:12px; font-size: 21px;'><strong>Select one feature which best explains your choice.</strong></p>" +
-            "<div class='left_stim'><img class='selected_img' src='"+trial_orders[trial_count][1]+"'></img>"+
-            "<p class='small'><strong>        </strong></p></div>" +
-            "<div class='right_stim'><img class=non_selected_img src=img/cardback2o.jpg></img>" +
-            "<p class='small'><strong>         </strong></p></div>" +
-            "</div>";
+            "<div class = 'main_div'>" +    
+                "<p style = 'font-size: 24px;'> Select one feature which best explains your choice. </p>" +
+                "<div class='left_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][1]+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+            "</div>"
         feedbacked_face=save_relative_rating(trial_orders[trial_count][1]);
           
         }else if (selected_face[0]=="rightarrow"){
             var  f_screen=
-                    "<div class='main_div'>"+
-            "<p class='big' style='margin-bottom:12px; font-size: 21px;'><strong>Select one feature which best explains your choice.</strong></p>" +
-            "<div class='left_stim'><img class='non_selected_img' src=img/cardback1o.jpg></img>"+
-            "<p class='small'><strong>         </strong></p></div>" +
-            "<div class='right_stim'><img class='selected_img' src='"+trial_orders[trial_count][0]+"'></img>" +
-            "<p class='small'><strong>         </strong></p></div>" +
-            "</div>";
+            "<div class = 'main_div'>" +    
+                "<p style = 'font-size: 24px;'> Select one feature which best explains your choice. </p>" +
+                "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][0]+"' </img> </div>"+
+            "</div>"
             feedbacked_face=save_relative_rating(trial_orders[trial_count][0]);
         }else{
-            var  f_screen="<div class='main_div'>"+
-            "<p class='small'><strong>Timed out</strong></p></div>" ;
+            var  f_screen="<p class='small'><strong>Timed out</strong></p></div>" ;
         }
     }else{
         //Not a manipulation trial.
         if (selected_face[0]=="leftarrow") {
             var  f_screen=
-            "<div class='main_div' >"+
-            "<p class='big' style='margin-bottom:12px; font-size: 21px;'><strong>Select one feature which best explains your choice.</strong></p>" +
-            "<div class='left_stim'><img class='selected_img' src='"+trial_orders[trial_count][0]+"'></img>" +
-            "<p class='small'><strong>         </strong></p></div>" +
-            "<div class='right_stim'><img class='non_selected_img' src=img/cardback2o.jpg></img>" +
-            "<p class='small'><strong>         </strong></p></div>" +
-            "</div>";
+            "<div class = 'main_div'>" +    
+                "<p style = 'font-size: 24px;'> Select one feature which best explains your choice. </p>" +
+                "<div class='left_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][0]+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>"+
+            "</div>"
             feedbacked_face=save_relative_rating(trial_orders[trial_count][0]);
 
         }else if (selected_face[0]=="rightarrow"){
             var  f_screen=
-            "<div class='main_div' >"+
-            "<p class='big' style='margin-bottom:12px; font-size: 21px;'><strong>Select one feature which best explains your choice.</strong></p>" +
-            "<div class='left_stim'><img class='non_selected_img' src=img/cardback1o.jpg></img>" +
-            "<p class='small'><strong>         </strong></p></div>" +
-            "<div class='right_stim'><img class='selected_img' src='"+trial_orders[trial_count][1]+"'></img>" +
-            "<p class='small'><strong>         </strong></p></div>" +
-            "</div>" ;
+            "<div class = 'main_div'>" +    
+                "<p style = 'font-size: 24px;'> Select one feature which best explains your choice. </p>" +
+                "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img>  </div>" +
+                "<div class='right_stim'><img class = 'central_stim_selected' src='"+trial_orders[trial_count][1]+"' </img> </div>"+
+            "</div>"
             feedbacked_face=save_relative_rating(trial_orders[trial_count][1]);
         }else{
-            var  f_screen="<div class='main_div'>"+
-            "<p class='small'><strong>Timed out</strong></p></div>";}
+            var  f_screen="<p class='small'><strong>Timed out</strong></p></div>";}
     }
 
     return f_screen
@@ -1034,11 +987,11 @@ timeline.push(write_data_part1)
 
 var choice2_instruction = {
 type: "html-keyboard-response",
-stimulus: "<div style='width: 80%;margin:0 auto;'>"+
+stimulus: "<div class = 'main_div'>" +   
 "<h1>Instructions for Second Round choice</h1>"+
-"<p>Great job so far, you are almost done!"+
-"<p>In this last part you will be asked to choose again between faces based on how attractive you think they are, but this time you will not have to explain the reasons behind your choice.</p> "+
-"<p>Press any key when you are ready.</p>"+
+"<p style = 'font-size: 22px;'>Great job so far, you are almost done!"+
+"<p style = 'font-size: 22px;'>In this last part you will be asked to choose again between faces based on how attractive you think they are, but this time you will not have to explain the reasons behind your choice.</p> "+
+"<p style = 'font-size: 22px;'>Press any key when you are ready.</p>"+
 "</div>",
     on_finish:function(data){
         console.log(trial_count2);
@@ -1053,7 +1006,7 @@ stimulus: "<div style='width: 80%;margin:0 auto;'>"+
   };
 timeline.push(choice2_instruction);
 
-
+button_choice=['<button id = "left_button">Left</button>','<button id = "right_button">Right</button>'];
 for (var i = 0; i < 60; i++){// 66 - 7 filler pairs.
 
     var choice2_deliberation = {
@@ -1063,9 +1016,9 @@ for (var i = 0; i < 60; i++){// 66 - 7 filler pairs.
             console.log("ORIGNIAL: ", unshuffled);
             console.log("SHUFFLED: ", shuffleArray(trial_orders[trial_count2]));
 
-            stim="<div class='main_div' style='display:flex; justify-content:flex-start; position: relative'>" + 
-            "<div class='left_stim' style='margin-right: 70px;margin-right: 55px;'><img src='"+trial_orders[trial_count2][0]+"' style='width:110%;margin: 10px 0 0 10px;margin-top: 40px'/></div>"+
-            "<div class='right_stim' style='margin-right: 70px;margin-left: 100px;'><img src='"+trial_orders[trial_count2][1]+"'style='width:110%;margin: 10px 0 0 10px;margin-top: 40px'/></div>"+
+            stim="<div class = 'main_div'>" +
+            "<div class='left_stim'><img class='central_stim' src='"+trial_orders[trial_count2][0]+"' </img></div>" +
+            "<div class='right_stim'><img class='central_stim' src='"+trial_orders[trial_count2][1]+"' </img></div>" +
             "</div>"
         return stim},
 
@@ -1083,8 +1036,6 @@ for (var i = 0; i < 60; i++){// 66 - 7 filler pairs.
         }
     };
 
-    button_choice=['<button class="button_confidence">Left</button>','<button class="button_confidence">Right</button>'];
-
     var cardback_choice2 = {
     type: "html-button-response",
     margin_vertical: "0px",
@@ -1092,11 +1043,11 @@ for (var i = 0; i < 60; i++){// 66 - 7 filler pairs.
     button_html: button_choice,
     choices: ["Left face","Right face"],
     stimulus:
-    "<div class='main_div' style='display:flex; justify-content:flex-start; position:relative;'>"+
-  "<p class='second_text' style=' font-size: 21px; '><strong>Select the face you find the most attractive.</strong></p>"+
-  "<div class='left_stim' style='position:absolute; top:65px;  left:-30px;  margin-bottom: 8vh'><img src='img/cardback1o.jpg' style='width:70%;'></div>"+
-  "<div class='right_stim' style='position:absolute; top:65px; right:-30px; margin-bottom: 8vh; '><img src='img/cardback2o.jpg' style='width:70%;'></div>"+
-"</div>",
+    "<div class = 'main_div'>" +
+            "<p style = 'font-size: 24px;'> Which face do you find the most attractive? </p>" +
+            "<div class='left_stim'><img class = 'central_stim' src='"+'img/cardback1o.jpg'+"' </img> </div>" +
+            "<div class='right_stim'><img class = 'central_stim' src='"+'img/cardback2o.jpg'+"' </img> </div>" +
+            "</div>",
 
     data: {screen_id: "cardback_choice2"},
     on_finish:function(data){
